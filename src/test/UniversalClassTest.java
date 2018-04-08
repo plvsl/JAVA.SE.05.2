@@ -1,6 +1,7 @@
 package test;
 
 import main.KeyNotFoundException;
+import main.PropertyFileNotFoundException;
 import main.UniversalClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -17,7 +18,7 @@ import static junit.framework.TestCase.assertTrue;
 public class UniversalClassTest {
 
     @BeforeClass
-    public static void setUp() throws IOException {
+    public static void setUp() throws IOException, PropertyFileNotFoundException {
         UniversalClass.importProperties("C:\\Users\\Polina\\Desktop\\JAVA.SE\\JAVA.SE.05\\JAVA.SE.05.2\\src\\main\\" +
                 "resources\\prop.properties");
     }
@@ -36,26 +37,26 @@ public class UniversalClassTest {
     }
 
     @Test
-    public void importPropertiesMethodShouldReturnFalseUsingNotExistingFile() throws IOException {
+    public void importPropertiesMethodShouldReturnFalseUsingNotExistingFile() throws IOException, PropertyFileNotFoundException {
         assertFalse(UniversalClass.importProperties("C:\\Users\\Polina\\Desktop\\JAVA.SE\\JAVA.SE.05\\JAVA.SE.05.2\\src\\main\\" +
                 "resources\\Prop2.properties"));
     }
 
     @Test
-    public void importPropertiesMethodShouldReturnFalseUsingSamePathTwice() throws IOException {
+    public void importPropertiesMethodShouldReturnFalseUsingSamePathTwice() throws IOException, PropertyFileNotFoundException {
         assertFalse(UniversalClass.importProperties("C:\\Users\\Polina\\Desktop\\JAVA.SE\\JAVA.SE.05\\JAVA.SE.05.2\\src" +
                 "\\main\\resources\\prop.properties"));
     }
 
     @Test
-    public void importPropertiesMethodShouldAcceptDifferentFilePathsFormats() throws IOException {
+    public void importPropertiesMethodShouldAcceptDifferentFilePathsFormats() throws IOException, PropertyFileNotFoundException {
         assertTrue(UniversalClass.importProperties("C:/Users/Polina/Desktop/JAVA.SE/JAVA.SE.05/JAVA.SE.05.2/src/main/" +
                 "resources/prop3.properties"));
         assertTrue(UniversalClass.importProperties("src/main/resources/prop4.properties"));
     }
 
     @Test
-    public void importPropertiesMethodShouldNotImportSameFileByDifferentPathsFormats() throws IOException {
+    public void importPropertiesMethodShouldNotImportSameFileByDifferentPathsFormats() throws IOException, PropertyFileNotFoundException {
         assertFalse(UniversalClass.importProperties("C:/Users/Polina/Desktop/JAVA.SE/JAVA.SE.05/JAVA.SE.05.2/src/main/" +
                 "resources/prop.properties"));
         assertFalse(UniversalClass.importProperties("src/main/resources/prop.properties"));

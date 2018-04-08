@@ -7,7 +7,7 @@ public class UniversalClass {
     private static Map<String, String> storage = new HashMap();
     private static Set<String> filePaths = new HashSet<>();
 
-    public static boolean importProperties(String filePath) throws IOException {
+    public static boolean importProperties(String filePath) throws IOException, PropertyFileNotFoundException {
         Properties prop = new Properties();
         File file = new File(filePath);
         filePath = file.getCanonicalPath();
@@ -19,7 +19,7 @@ public class UniversalClass {
         try {
             input = new FileInputStream(filePath);
         } catch (FileNotFoundException e) {
-            return false;
+            throw new PropertyFileNotFoundException();
         }
 
         prop.load(input);

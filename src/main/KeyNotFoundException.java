@@ -6,6 +6,6 @@ public class KeyNotFoundException extends Exception {
     }
 
     KeyNotFoundException(String exceptionMessage){
-
+        super(exceptionMessage);
     }
 }
